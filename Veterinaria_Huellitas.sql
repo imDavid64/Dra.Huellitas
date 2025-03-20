@@ -427,3 +427,159 @@ BEGIN
         P_ID_MASCOTA, P_ID_EMPLEADO, P_ID_CLIENTE, P_DESCRIPCION, P_FECHA, P_ESTADO
     );
 END AGREGAR_INCIDENTE;
+
+
+----13. Cursor Cliente Mascota-----
+CREATE OR REPLACE PROCEDURE obtener_cliente_mascotas AS
+    CURSOR c_clientes_mascotas IS 
+        SELECT c.id_cliente, c.nombre AS nombre_cliente, m.nombre AS mascota, m.tipo
+        FROM cliente c
+        JOIN mascota m ON c.id_cliente = m.id_cliente;
+BEGIN
+    FOR r IN c_clientes_mascotas LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Cliente: ' || r.id_cliente || 
+                             ', Nombre Cliente: ' || r.nombre_cliente || 
+                             ', Mascota: ' || r.mascota || 
+                             ', Tipo: ' || r.tipo);
+    END LOOP;
+END obtener_cliente_mascotas;
+
+----14. Cursor Obtner consulta----
+CREATE OR REPLACE PROCEDURE obtener_consulta AS
+    CURSOR o_obtener_consulta IS 
+        SELECT id_consulta, id_mascota, id_empleado, id_cliente, fecha, motivo, diagnostico, 
+               'Tratamiento pendiente' AS tratamiento
+        FROM consulta;
+BEGIN
+    FOR r IN o_obtener_consulta LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Consulta: ' || r.id_consulta || 
+                             ', ID Mascota: ' || r.id_mascota || 
+                             ', ID Empleado: ' || r.id_empleado || 
+                             ', ID Cliente: ' || r.id_cliente || 
+                             ', Fecha: ' || TO_CHAR(r.fecha, 'YYYY-MM-DD') || 
+                             ', Motivo: ' || r.motivo || 
+                             ', Diagnóstico: ' || r.diagnostico || 
+                             ', Tratamiento: ' || r.tratamiento);
+    END LOOP;
+END obtener_consulta;
+
+---15. Cursor Obtener medicamento----
+CREATE OR REPLACE PROCEDURE obtener_medicamento AS
+    CURSOR o_obtener_medicamento IS 
+        SELECT id_medicamento, nombre, descripcion, dosis, id_tratamiento
+        FROM medicamento;
+BEGIN
+    FOR r IN o_obtener_medicamento LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Medicamento: ' || r.id_medicamento || 
+                             ', Nombre: ' || r.nombre || 
+                             ', Descripción: ' || r.descripcion || 
+                             ', Dosis: ' || r.dosis || 
+                             ', ID Tratamiento: ' || r.id_tratamiento);
+    END LOOP;
+END obtener_medicamento;
+/
+---16. Cursor Obtener Productos---
+CREATE OR REPLACE PROCEDURE obtener_producto AS
+    CURSOR o_obtener_producto IS 
+        SELECT id_producto, id_proveedor, nombre, descripcion, precio, stock, tipo
+        FROM producto;
+BEGIN
+    FOR r IN o_obtener_producto LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Producto: ' || r.id_producto || 
+                             ', ID Proveedor: ' || r.id_proveedor|| 
+                             ', Nombre: ' || r.nombre || 
+                             ', Descripción: ' || r.descripcion || 
+                             ', Precio: ' || r.precio || 
+                             ', Stock: ' || r.stock || 
+                             ', Tipo: ' || r.tipo);
+    END LOOP;
+END obtener_producto;
+
+---17. Cursor Obtener Servicios---
+CREATE OR REPLACE PROCEDURE obtener_servicio AS
+    CURSOR o_obtener_servicio IS 
+        SELECT id_servicio, nombre, descripcion, precio
+        FROM servicio;
+BEGIN
+    FOR r IN o_obtener_servicio LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Servicio: ' || r.id_servicio || 
+                             ', Nombre: ' || r.nombre || 
+                             ', Descripción: ' || r.descripcion || 
+                             ', Precio: ' || r.precio);
+    END LOOP;
+END obtener_servicio;
+
+---18. Cursosr obtener factura---
+CREATE OR REPLACE PROCEDURE obtener_factura AS
+    CURSOR o_obtener_factura IS 
+        SELECT id_factura, id_cliente, fecha, total, id_metodo_pago, estado_pago
+        FROM factura;
+BEGIN
+    FOR r IN o_obtener_factura LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Factura: ' || r.id_factura || 
+                             ', ID Cliente: ' || r.id_cliente || 
+                             ', Fecha: ' || r.fecha || 
+                             ', Total: ' || r.total || 
+                             ', ID Método de Pago: ' || r.id_metodo_pago || 
+                             ', Estado de Pago: ' || r.estado_pago);
+    END LOOP;
+END obtener_factura;
+
+
+
+---19. Cursosr Obtener provedores--
+CREATE OR REPLACE PROCEDURE obtener_proveedor AS
+    CURSOR o_obtener_proveedor IS 
+        SELECT id_proveedor, nombre, telefono, email, direccion
+        FROM proveedor;
+BEGIN
+    FOR r IN o_obtener_proveedor LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Proveedor: ' || r.id_proveedor || 
+                             ', Nombre: ' || r.nombre || 
+                             ', Teléfono: ' || r.telefono || 
+                             ', Email: ' || r.email || 
+                             ', Dirección: ' ||r.direccion);
+    END LOOP;
+END obtener_proveedor;
+
+
+
+---20. Cursor factura y detalle producto---
+CREATE OR REPLACE PROCEDURE obtener_factura_productos AS
+    CURSOR c_factura_productos IS 
+        SELECT f.id_factura, f.fecha, f.total, f.estado_pago, 
+               dp.id_producto, cantidad, dp.precio_unitario
+        FROM factura f
+        JOIN detalle_producto dp ON f.id_factura = dp.id_factura;
+BEGIN
+    FOR r IN c_factura_productos LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Factura: ' || r.id_factura || 
+                             ', Fecha: ' || r.fecha || 
+                             ', Total: ' || r.total || 
+                             ', Estado de Pago: ' || r.estado_pago || 
+                             ', ID Producto: ' || r.id_producto || 
+                             ', Cantidad: ' || r.cantidad || 
+                             ', Precio Unitario: ' || r.precio_unitario);
+    END LOOP;
+END obtener_factura_productos;
+
+
+
+---21. Cursor factura y detalle Servicio---
+CREATE OR REPLACE PROCEDURE obtener_factura_servicios AS
+    CURSOR c_factura_servicios IS 
+        SELECT f.id_factura, f.fecha, f.total, f.estado_pago, 
+               ds.id_servicio, ds.cantidad, ds.precio_unitario
+        FROM factura f
+        JOIN detalle_servicio ds ON f.id_factura = ds.id_factura;
+BEGIN
+    FOR r IN c_factura_servicios LOOP
+        DBMS_OUTPUT.PUT_LINE('ID Factura: ' || r.id_factura || 
+                             ', Fecha: ' || r.fecha || 
+                             ', Total: ' || r.total || 
+                             ', Estado de Pago: ' || r.estado_pago || 
+                             ', ID Servicio: ' || r.id_servicio || 
+                             ', Cantidad: ' || r.cantidad || 
+                             ', Precio Unitario: ' || r.precio_unitario);
+    END LOOP;
+END obtener_factura_servicios;
