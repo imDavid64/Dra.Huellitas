@@ -1,37 +1,37 @@
--- 1. Creación tabla cliente: almacena info sobre los clientes.
+-- 1. Creaciï¿½n tabla cliente: almacena info sobre los clientes.
 create table cliente (
     id_cliente number generated as identity primary key, -- para que sea incremental
     nombre varchar2(50) not null,
     apellido varchar2(50) not null,
     telefono varchar2(20),
     email varchar2(50),
-    direccion varchar2(255) -- podría ser solo ciudad
+    direccion varchar2(255) -- podrï¿½a ser solo ciudad
 );
 
--- 2. Creación tabla mascota: almacena info sobre las mascotas de los clientes.
+-- 2. Creaciï¿½n tabla mascota: almacena info sobre las mascotas de los clientes.
 create table mascota (
     id_mascota number generated as identity primary key,
     nombre varchar2(50) not null,
     tipo varchar2(50) not null, -- (perro, gato, conejo, etc...)
     raza varchar2(50), -- agregar n/a si no aplica
-    edad number, -- o será que lo modificamos a fecha nacimiento?
+    edad number, -- o serï¿½ que lo modificamos a fecha nacimiento?
     peso number,
     sexo varchar2(10), -- Hembra, macho
     id_cliente number,
     constraint fk_mascota_cliente foreign key (id_cliente) references cliente (id_cliente)
 );
 
--- 3. Creación tabla historial mascota: mantiene un historial sobre situaciones importantes de cada mascota
+-- 3. Creaciï¿½n tabla historial mascota: mantiene un historial sobre situaciones importantes de cada mascota
 create table historial_mascota (
     id_historial number generated as identity primary key,
     id_mascota number,
-    situacion varchar2(100), -- ejemplo consulta médica, vacunas, 
+    situacion varchar2(100), -- ejemplo consulta mï¿½dica, vacunas, 
     descripcion varchar2(255), -- datos adicionales
     fecha date,
     constraint fk_hmascota_mascota foreign key (id_mascota) references mascota(id_mascota)
 );
 
--- 4. Creación tabla empleado: almacena info sobre los empleados de la veterinaria.
+-- 4. Creaciï¿½n tabla empleado: almacena info sobre los empleados de la veterinaria.
 create table empleado (
     id_empleado number generated as identity primary key,
     nombre varchar2(100) not null,
@@ -39,10 +39,10 @@ create table empleado (
     rol varchar2(50) check (rol in ('Veterinario', 'Administrativo')), -- ver que otros roles aplican para incluirlos
     telefono varchar2(20),
     email varchar2(50),
-    salario number -- debería usar money? 
+    salario number -- deberï¿½a usar money? 
 );
 
--- 5. Creación tabla consulta: almacena info sobre las consultas al veterinario de cada mascota.
+-- 5. Creaciï¿½n tabla consulta: almacena info sobre las consultas al veterinario de cada mascota.
 create table consulta (
     id_consulta number generated as identity primary key,
     id_mascota number,
@@ -55,7 +55,7 @@ create table consulta (
     constraint fk_consulta_empleado foreign key (id_empleado) references empleado(id_empleado)
 );
 
-/* 6. Creación tabla tratamiento: en caso de que alguna mascota deba seguir algún tratamiento, 
+/* 6. Creaciï¿½n tabla tratamiento: en caso de que alguna mascota deba seguir algï¿½n tratamiento, 
 almacena info relevante sobre esto.*/
 create table tratamiento (
     id_tratamiento number generated as identity primary key,
@@ -65,7 +65,7 @@ create table tratamiento (
     constraint fk_tratamiento_consulta foreign key (id_consulta) references consulta(id_consulta)
 );
 
--- 7. Creación tabla medicamento: almacena info sobre las medicinas de acuerdo al tratamiento indicado.
+-- 7. Creaciï¿½n tabla medicamento: almacena info sobre las medicinas de acuerdo al tratamiento indicado.
 create table medicamento (
     id_medicamento number generated as identity primary key,
     nombre varchar2(100) not null,
@@ -75,20 +75,20 @@ create table medicamento (
     constraint fk_medicamento_tratamiento foreign key (id_tratamiento) references tratamiento(id_tratamiento)
 );
 
--- 8. Creación tabla Cita: almacena info sobre las citas (ya sea que estén programadas, que hayan sido confirmadas, etc).
+-- 8. Creaciï¿½n tabla Cita: almacena info sobre las citas (ya sea que estï¿½n programadas, que hayan sido confirmadas, etc).
 create table cita (
     id_cita number generated as identity primary key,
     id_cliente number,
     id_empleado number,
     fecha date,
     hora varchar2(10),
-    estado varchar2(50) check (estado in ('Pendiente', 'Confirmada', 'Cancelada', 'No se presentó')), -- definir si lo dejamos con estados preestablecidos o mejor dejarlo abierto
+    estado varchar2(50) check (estado in ('Pendiente', 'Confirmada', 'Cancelada', 'No se presentï¿½')), -- definir si lo dejamos con estados preestablecidos o mejor dejarlo abierto
     constraint fk_cita_cliente foreign key (id_cliente) references cliente(id_cliente),
     constraint fk_cita_empleado foreign key (id_empleado) references empleado(id_empleado)
 );
 
 
--- 9. Creación tabla producto: almacena info sobre los productos disponibles para la venta en la veterinaria.
+-- 9. Creaciï¿½n tabla producto: almacena info sobre los productos disponibles para la venta en la veterinaria.
 create table producto (
     id_producto number generated as identity primary key,
     nombre varchar2(100) not null,
@@ -98,7 +98,7 @@ create table producto (
     tipo varchar2(50)
 );
 
--- 10. Creación tabla servicio: almacena info sobre los servicios que tienen disponibles en la veterinaria (ejm: grooming, cirugías, etc).
+-- 10. Creaciï¿½n tabla servicio: almacena info sobre los servicios que tienen disponibles en la veterinaria (ejm: grooming, cirugï¿½as, etc).
 create table servicio (
     id_servicio number generated as identity primary key,
     nombre varchar2(100) not null,
@@ -106,19 +106,19 @@ create table servicio (
     precio number not null
 );
 
--- 11. Creación tabla factura: almacena info de las facturas de los clientes.
+-- 11. Creaciï¿½n tabla factura: almacena info de las facturas de los clientes.
 create table factura (
     id_factura number generated as identity primary key,
     id_cliente number,
     fecha date,
     total number not null,
     id_metodo_pago number,
-    estado_pago varchar2(50), -- será que mejor generamos un check? 
+    estado_pago varchar2(50), -- serï¿½ que mejor generamos un check? 
     constraint fk_factura_cliente foreign key (id_cliente) references cliente(id_cliente),
     constraint fk_factura_metodo_pago foreign key (id_metodo_pago) references metodo_pago(id_metodo_pago)
 );
 
--- 12. Creación tabla detalle factura: almacena info relevante sobre las facturas de los clientes.
+-- 12. Creaciï¿½n tabla detalle factura: almacena info relevante sobre las facturas de los clientes.
 create table detalle_factura (
     id_detalle number generated as identity primary key,
     id_factura number,
@@ -126,13 +126,13 @@ create table detalle_factura (
     id_servicio number,
     cantidad number not null, 
     precio_unitario number not null,
-    subtotal number, -- mejorarlo para tener el total por medio de multiplicación
+    subtotal number, -- mejorarlo para tener el total por medio de multiplicaciï¿½n
     constraint fk_detalle_factura_factura foreign key (id_factura) references factura(id_factura),
     constraint fk_detalle_factura_producto foreign key (id_producto) references producto(id_producto),
     constraint fk_detalle_factura_servicio foreign key (id_servicio) references servicio(id_servicio)
 );
 
--- 13. Creación tabla proveedor: almacena info sobre los proveedores de los productos disponibles para la venta en la veterinaria.
+-- 13. Creaciï¿½n tabla proveedor: almacena info sobre los proveedores de los productos disponibles para la venta en la veterinaria.
 create table proveedor (
     id_proveedor number generated as identity primary key,
     nombre varchar2(100) not null,
@@ -141,7 +141,7 @@ create table proveedor (
     direccion varchar2(100)
 );
 
--- 14. Creación tabla orden compra: almacena info sobre las compras de productos que realiza la veterinaria.
+-- 14. Creaciï¿½n tabla orden compra: almacena info sobre las compras de productos que realiza la veterinaria.
 create table orden_compra (
     id_orden_compra number generated as identity primary key,
     id_proveedor number,
@@ -150,7 +150,7 @@ create table orden_compra (
     constraint fk_orden_compra_proveedor foreign key (id_proveedor) references proveedor(id_proveedor)
 );
 
-/* 15. Creación tabla producto orden compra: es una tabla intermedia entre productos y orden_compra, para llevar un registro
+/* 15. Creaciï¿½n tabla producto orden compra: es una tabla intermedia entre productos y orden_compra, para llevar un registro
 de los productos comprados a los proveedores */
 create table producto_orden_compra (
     id_poc number generated as identity primary key,
@@ -162,13 +162,13 @@ create table producto_orden_compra (
     constraint fk_producto_orden_compra_orden_compra foreign key (id_orden_compra) references orden_compra(id_orden_compra)
 );
 
--- 16. Creación metodo de pago: almacena info sobre el método de pago.
+-- 16. Creaciï¿½n metodo de pago: almacena info sobre el mï¿½todo de pago.
 create table metodo_pago (
     id_metodo_pago number generated as identity primary key,
     nombre varchar2(50) not null
 );
 
--- 17. Creación tabla pago: almacena info sobre el pago, para tener conocimiento sobre los montos.
+-- 17. Creaciï¿½n tabla pago: almacena info sobre el pago, para tener conocimiento sobre los montos.
 create table pago (
     id_pago number generated as identity primary key,
     id_factura number,
@@ -179,7 +179,7 @@ create table pago (
     constraint fk_pago_metodo_pago foreign key (id_metodo_pago) references metodo_pago(id_metodo_pago)
 );
 
--- 18. Creación tabla historial compra: almacena info el historial de compra de los clientes.
+-- 18. Creaciï¿½n tabla historial compra: almacena info el historial de compra de los clientes.
 create table historial_compra (
     id_historial_compra number generated as identity primary key,
     id_cliente number not null,
@@ -190,7 +190,7 @@ create table historial_compra (
     constraint fk_historial_compra_factura foreign key (id_factura) references factura(id_factura)
 );
 
--- 19. Creación tabla historial servicia: almacena info del historial de servicios adquiridos por los clientes.
+-- 19. Creaciï¿½n tabla historial servicia: almacena info del historial de servicios adquiridos por los clientes.
 create table historial_servicio (
     id_historial_servicio number generated as identity primary key,
     id_cliente number,
@@ -204,7 +204,7 @@ create table historial_servicio (
 );
 
 
--- 20. Creación tabla incidente: almacena info de incidentes ocurridos en la veterinaria
+-- 20. Creaciï¿½n tabla incidente: almacena info de incidentes ocurridos en la veterinaria
 create table incidente (
     id_incidente number generated as identity primary key,
     id_mascota number null,
@@ -215,3 +215,215 @@ create table incidente (
     constraint fk_incidente_mascota foreign key (id_mascota) references mascota(id_mascota),
     constraint fk_incidente_empleado foreign key (id_empleado) references empleado(id_empleado)
 );
+
+
+
+
+
+--------------------PROCEDIMEINTOS ALMACENADOS--------------------
+
+-----1. AGREGAR CLIENTE-----
+CREATE OR REPLACE PROCEDURE AGREGAR_CLIENTE (
+    P_nombre IN VARCHAR2,
+    P_apellido IN VARCHAR2,
+    P_telefono IN NUMBER,
+    P_email IN VARCHAR2,
+    P_direccion IN VARCHAR2
+) IS
+BEGIN
+    INSERT INTO CLIENTE (
+        NOMBRE, APELLIDO, TELEFONO, EMAIL, DIRECCION
+    ) VALUES (
+        P_nombre, P_apellido, P_telefono, P_email, P_direccion
+    );
+END AGREGAR_CLIENTE;
+
+
+-----2. AGREGAR MASCOTA-----
+CREATE OR REPLACE PROCEDURE agregar_mascota (
+    p_nombre IN VARCHAR2,
+    p_tipo IN VARCHAR2,
+    p_raza IN VARCHAR2,
+    p_edad IN NUMBER,
+    p_peso IN NUMBER,
+    p_sexo IN VARCHAR2,
+    p_id_cliente IN NUMBER
+) IS
+BEGIN
+    INSERT INTO mascota (
+        nombre, tipo, raza, edad, peso, sexo, id_cliente
+    ) VALUES (
+        p_nombre, p_tipo, p_raza, p_edad, p_peso, p_sexo, p_id_cliente
+    );
+END agregar_mascota;
+
+
+-----3. AGREGAR HISTORIAL DE LA MASCOTA-----
+CREATE OR REPLACE PROCEDURE AGREGAR_HISTORIAL_MASCOTA (
+    P_id_mascota IN NUMBER,
+    P_situacion IN VARCHAR2,
+    P_descripcion IN VARCHAR2,
+    P_fecha IN DATE
+)IS
+BEGIN
+    INSERT INTO HISTORIAL_MASCOTA (
+        ID_MASCOTA, SITUACION, DESCRIPCION, FECHA
+    ) VALUES (
+        P_id_mascota, P_situacion, P_descripcion, P_fecha
+    );
+END AGREGAR_HISTORIAL_MASCOTA;
+
+
+-----4. AGREGAR CONSULTA-----
+CREATE OR REPLACE PROCEDURE AGREGAR_CONSULTA (
+    P_id_consulta IN NUMBER,
+    P_id_mascota IN NUMBER,
+    P_id_empleado IN NUMBER,
+    P_id_cliente IN NUMBER,
+    P_fecha IN DATE,
+    P_motivo IN VARCHAR2,
+    P_diagnostico IN VARCHAR2,
+    P_tratamiento IN VARCHAR2
+) IS
+BEGIN
+    INSERT INTO CONSULTA (
+        FECHA, MOTIVO, diagnostico, ID_MASCOTA, ID_CLIENTE,ID_EMPLEADO
+    ) VALUES (
+        P_fecha, P_motivo, P_diagnostico, P_id_mascota, P_id_cliente, P_id_empleado
+    );
+END agregar_consulta;
+
+
+-----5. AGREGAR TRATAMIENTO-----
+CREATE OR REPLACE PROCEDURE AGREGAR_TRATAMIENTO (
+    P_id_empleado IN NUMBER,
+    P_nombre IN VARCHAR2,
+    P_descripcion IN VARCHAR2,
+    P_id_consulta IN NUMBER
+) IS
+BEGIN
+    INSERT INTO TRATAMIENTO (
+        ID_EMPLEADO, NOMBRE, DESCRIPCION, ID_CONSULTA
+    )VALUES (
+        P_id_empleado, P_nombre, P_descripcion, P_id_consulta
+    );
+END AGREGAR_TRATAMIENTO;
+
+
+-----6. AGREGAR EMPLEADO-----
+CREATE OR REPLACE PROCEDURE AGREGAR_EMPLEADO (
+    P_nombre IN NUMBER,
+    P_apellido IN VARCHAR2,
+    P_rol IN VARCHAR2,
+    P_telefono IN NUMBER,
+    P_email IN VARCHAR2,
+    P_salario IN NUMBER
+)IS
+BEGIN
+    INSERT INTO EMPLEADO (
+        NOMBRE, APELLIDO, ROL, TELEFONO, EMAIL, SALARIO
+    ) VALUES (
+        P_nombre, P_apellido, P_rol,  P_telefono, P_email, P_salario
+    );
+END AGREGAR_EMPLEADO;
+
+
+-----7. AGREGAR MEDICAMIENTO-----
+CREATE OR REPLACE PROCEDURE AGREGAR_MEDICAMENTO (
+    P_NOMBRE IN VARCHAR2,
+    P_DESCRIPCION IN VARCHAR2,
+    P_DOSIS IN VARCHAR2,
+    P_ID_TRATAMIENTO IN NUMBER
+) IS
+BEGIN
+    INSERT INTO MEDICAMENTO (
+        NOMBRE, DESCRIPCION, DOSIS, ID_TRATAMIENTO
+    ) VALUES (
+        P_NOMBRE, P_DESCRIPCION, P_DOSIS, P_ID_TRATAMIENTO
+    );
+END AGREGAR_MEDICAMENTO;
+
+    
+-----8. AGREGAR CITA-----
+CREATE OR REPLACE PROCEDURE AGREGAR_CITA (
+    P_ID_CLIENTE IN NUMBER,
+    P_ID_EMPLEADO IN NUMBER,
+    P_FECHA IN DATE,
+    P_HORA IN VARCHAR2,
+    P_ESTADO IN VARCHAR2
+) IS
+BEGIN
+    INSERT INTO CITA (
+        ID_CLIENTE, ID_EMPLEADO, FECHA, HORA, ESTADO
+    ) VALUES (
+        P_ID_CLIENTE, P_ID_EMPLEADO, P_FECHA, P_HORA, P_ESTADO
+    );
+END AGREGAR_CITA;
+
+
+-----9. AGREGAR PRODUCTO-----
+CREATE  OR REPLACE PROCEDURE AGREGAR_PRODUCTO (
+    P_ID_PROVEEDOR IN NUMBER,
+    P_NOMBRE IN VARCHAR2,
+    P_DESCRIPCION IN VARCHAR2,
+    P_PRECIO IN NUMBER,
+    P_STOCK IN NUMBER,
+    P_TIPO IN VARCHAR2
+)IS
+BEGIN
+    INSERT INTO PRODUCTO (
+        ID_PROVEEDOR, NOMBRE, DESCRIPCION, PRECIO, STOCK, TIPO
+    ) VALUES (
+        P_ID_PROVEEDOR, P_NOMBRE, P_DESCRIPCION, P_PRECIO, P_STOCK, P_TIPO
+    );
+END AGREGAR_PRODUCTO;
+
+
+-----10. AGREGAR SERVICIO-----
+CREATE  OR REPLACE PROCEDURE AGREGAR_SERVICIO (
+    P_NOMBRE IN VARCHAR2,
+    P_DESCRIPCION IN VARCHAR2,
+    P_PRECIO IN NUMBER
+)IS
+BEGIN
+    INSERT INTO SERVICIO (
+        NOMBRE, DESCRIPCION, PRECIO
+    ) VALUES (
+        P_NOMBRE, P_DESCRIPCION, P_PRECIO
+    );
+
+END AGREGAR_SERVICIO;
+
+
+-----11. AGREGAR PROVEEDOR-----
+CREATE  OR REPLACE PROCEDURE AGREGAR_PROVEEDOR (
+    P_NOMBRE IN VARCHAR2,
+    P_TELEFONO IN NUMBER,
+    P_EMAIL IN VARCHAR2,
+    P_DIRECCION IN VARCHAR2
+)IS
+BEGIN
+    INSERT INTO PROVEEDOR (
+        NOMBRE, TELEFONO, EMAIL, DIRECCION
+    ) VALUES (
+        P_NOMBRE, P_TELEFONO, P_EMAIL, P_DIRECCION
+    );
+END AGREGAR_PROVEEDOR;
+
+
+-----12. AGREGAR INCIDENTE-----
+CREATE OR REPLACE PROCEDURE AGREGAR_INCIDENTE (
+    P_ID_MASCOTA IN NUMBER,
+    P_ID_EMPLEADO IN NUMBER,
+    P_ID_CLIENTE IN NUMBER,
+    P_DESCRIPCION IN VARCHAR2,
+    P_FECHA DATE,
+    P_ESTADO VARCHAR2
+)IS
+BEGIN
+    INSERT INTO INCIDENTE(
+        ID_MASCOTA, ID_EMPLEADO, ID_CLIENTE, DESCRIPCION, FECHA, ESTADO
+    ) VALUES (
+        P_ID_MASCOTA, P_ID_EMPLEADO, P_ID_CLIENTE, P_DESCRIPCION, P_FECHA, P_ESTADO
+    );
+END AGREGAR_INCIDENTE;
