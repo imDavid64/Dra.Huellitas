@@ -1,0 +1,8 @@
+Model\Mascota.class
+Model\DAO\MascotaDAO.class
+Controller\ClienteController.class
+Model\Cliente.class
+drahuellitas_proyecto\DraHuellitas_Proyecto.class
+Controller\MascotaController.class
+Model\DAO\ClienteDAO.class
+Model\ConexionOracle.class
