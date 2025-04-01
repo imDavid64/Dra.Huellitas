@@ -1,19 +1,26 @@
-
 package Model;
 
+import java.sql.Connection;
+
 public class Cliente {
+
+    private int idCliente;
     private String nombre;
     private String apellido;
-    private int telefono;
+    private String telefono;
     private String email;
     private String direccion;
 
-    public Cliente(String nombre, String apellido, int telefono, String email, String direccion) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.telefono = telefono;
-        this.email = email;
-        this.direccion = direccion;
+    // Constructor vacío (opcional)
+    public Cliente() {}
+
+    // Getters y Setters
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -32,11 +39,11 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -55,4 +62,11 @@ public class Cliente {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" + "idCliente=" + idCliente + ", nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", email=" + email + ", direccion=" + direccion + '}';
+    }
+    
 }
+
