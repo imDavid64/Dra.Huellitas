@@ -42,7 +42,7 @@ public class AgregarMascota extends javax.swing.JFrame {
                         inTxtApellidoPropietario.getText()
                 );
 
-                if (!inTxtNombrePropietario.getText().equals("") ||
+                if (!inTxtNombrePropietario.getText().equals("") &&
                         !inTxtApellidoPropietario.getText().equals("")) {
                     
                     inTxtIdCliente.setText(String.valueOf(cliente.getIdCliente()));
@@ -54,6 +54,7 @@ public class AgregarMascota extends javax.swing.JFrame {
             }
         });
 
+            //Accion del Boton de Agregar Mascota
         btnAgragarMascota.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -297,6 +298,8 @@ public class AgregarMascota extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setText("ID Cliente");
+
+        inTxtIdCliente.setEditable(false);
 
         inTxtApellidoPropietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
