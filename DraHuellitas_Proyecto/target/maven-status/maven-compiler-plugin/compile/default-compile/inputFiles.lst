@@ -1,8 +1,15 @@
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\Model\Mascota.java
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\Controller\MascotaController.java
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\Model\Cliente.java
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\Model\DAO\ClienteDAO.java
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\Controller\ClienteController.java
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\Model\DAO\MascotaDAO.java
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\drahuellitas_proyecto\DraHuellitas_Proyecto.java
-D:\NETBEANS PROJECTS Local\DraHuellitas_Proyecto\src\main\java\Model\ConexionOracle.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Model\DAO\ConexionOracle.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Model\DAO\MascotaDAO.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\View\Inicio.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Controller\InicioController.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\View\Expedientes.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\drahuellitas_proyecto\DraHuellitas_Proyecto.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Controller\ClienteController.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Model\Cliente.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Model\DAO\ClienteDAO.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Cliente.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Model\Mascota.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\View\PLANTILLA.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\View\AgregarCliente.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\View\AgregarMascota.java
+C:\Users\XPC\OneDrive\Documentos\GitHub\Dra.Huellitas\DraHuellitas_Proyecto\src\main\java\Controller\MascotaController.java

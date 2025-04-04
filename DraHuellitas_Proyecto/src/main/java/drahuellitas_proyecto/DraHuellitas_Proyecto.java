@@ -1,25 +1,37 @@
-
 package drahuellitas_proyecto;
 
 import Controller.ClienteController;
+import Controller.InicioController;
 import Controller.MascotaController;
+import View.AgregarCliente;
+import View.AgregarMascota;
+import View.Inicio;
 
 public class DraHuellitas_Proyecto {
 
     public static void main(String[] args) {
+
+        Inicio ventanaPrincipal = new Inicio();
         
-        //Se crear instancia del controlador
-        ClienteController cliente = new ClienteController();
-        MascotaController mascota = new MascotaController();
+        InicioController controlador = new InicioController(ventanaPrincipal);
         
-        
-        //Se llamar al metodo para agregar un Cliente
-        //cliente.agregarCliente("David", "Amador", 12345678, "david@gmail.com", "heredia");
+        ventanaPrincipal.setVisible(true);
         
         
-        //Se llamar al metodo para agregar una Mascota
-        mascota.agregarMascota("Canela", "Canino", "SRD", 14, 4, "Hembra", 1);
-       
         
+        /*
+        // Ejecutar el JFrame en el hilo de eventos de Swing
+        java.awt.EventQueue.invokeLater(() -> {
+            new Inicio().setVisible(true); // Crear instancia de Inicio y hacerla visible
+        });
+*/
+
+        //Se crean las instancias para la vista
+        //AgregarCliente vista = new AgregarCliente();
+        // Crear la instancia del controlador y pasar la vista
+        //ClienteController cliente = new ClienteController(vista);
+        //MascotaController mascota = new MascotaController();
+        // Iniciar la vista
+        //cliente.iniciar();
     }
 }

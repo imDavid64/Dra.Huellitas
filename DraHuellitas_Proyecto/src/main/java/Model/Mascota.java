@@ -1,24 +1,27 @@
 package Model;
 
 public class Mascota {
-    private String nombre;
-    private String tipo; // (perro, gato, conejo, etc...)
-    private String raza; // agregar SRD si no aplica
-    private int edad;
-    private int peso;
-    private String sexo;
-    private int id_cliente;
 
-    public Mascota(String nombre, String tipo, String raza, int edad, int peso, String sexo, int id_cliente) {
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.raza = raza;
-        this.edad = edad;
-        this.peso = peso;
-        this.sexo = sexo;
-        this.id_cliente = id_cliente;
+    private int idMascota;
+    private String nombre;
+    private String tipo;
+    private String raza;
+    private java.sql.Date fechaNacimiento;
+    private double peso;
+    private String sexo;
+    private int idCliente;
+
+    // Constructor vacío (opcional)
+    public Mascota() {}
+
+    // Getters y Setters
+    public int getIdMascota() {
+        return idMascota;
     }
-    
+
+    public void setIdMascota(int idMascota) {
+        this.idMascota = idMascota;
+    }
 
     public String getNombre() {
         return nombre;
@@ -44,19 +47,19 @@ public class Mascota {
         this.raza = raza;
     }
 
-    public int getEdad() {
-        return edad;
+    public java.sql.Date getFechaNacimiento() {
+        return fechaNacimiento;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setFechaNacimiento(java.sql.Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
@@ -68,14 +71,20 @@ public class Mascota {
         this.sexo = sexo;
     }
 
-    public int getId_cliente() {
-        return id_cliente;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setId_cliente(int id_cliente) {
-        this.id_cliente = id_cliente;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Mascota{" + "idMascota=" + idMascota + ", nombre=" + nombre + 
+               ", tipo=" + tipo + ", raza=" + raza + ", fechaNacimiento=" + fechaNacimiento +
+               ", peso=" + peso + ", sexo=" + sexo + ", idCliente=" + idCliente + '}';
+    }
 }
 
 

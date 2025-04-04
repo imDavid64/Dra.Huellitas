@@ -14,7 +14,7 @@ create table mascota (
     nombre varchar2(50) not null,
     tipo varchar2(50) not null, -- (perro, gato, conejo, etc...)
     raza varchar2(50), -- agregar n/a si no aplica
-    edad number, -- o ser� que lo modificamos a fecha nacimiento?
+    fecha_nacimiento date, -- o ser� que lo modificamos a fecha nacimiento?
     peso number,
     sexo varchar2(10), -- Hembra, macho
     id_cliente number,
@@ -118,18 +118,26 @@ create table factura (
     constraint fk_factura_metodo_pago foreign key (id_metodo_pago) references metodo_pago(id_metodo_pago)
 );
 
--- 12. Creaci�n tabla detalle factura: almacena info relevante sobre las facturas de los clientes.
-create table detalle_factura (
-    id_detalle number generated as identity primary key,
-    id_factura number,
-    id_producto number,
-    id_servicio number,
-    cantidad number not null, 
-    precio_unitario number not null,
-    subtotal number, -- mejorarlo para tener el total por medio de multiplicaci�n
-    constraint fk_detalle_factura_factura foreign key (id_factura) references factura(id_factura),
-    constraint fk_detalle_factura_producto foreign key (id_producto) references producto(id_producto),
-    constraint fk_detalle_factura_servicio foreign key (id_servicio) references servicio(id_servicio)
+-- 12. Creaci�n tabla detalle producto: almacena info relevante sobre las facturas de los clientes.
+CREATE TABLE detalle_producto (
+    id_detalle_producto NUMBER GENERATED AS IDENTITY PRIMARY KEY,
+    id_factura NUMBER,
+    id_producto NUMBER, -- Relación con el producto
+    cantidad NUMBER NOT NULL,
+    precio_unitario NUMBER NOT NULL,
+    CONSTRAINT fk_detalle_producto_factura FOREIGN KEY (id_factura) REFERENCES factura(id_factura),
+    CONSTRAINT fk_detalle_producto_producto FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+);
+
+-- 13. Creaci�n tabla detalle producto: almacena info relevante sobre las facturas de los clientes.
+CREATE TABLE detalle_servicio (
+    id_detalle_servicio NUMBER GENERATED AS IDENTITY PRIMARY KEY,
+    id_factura NUMBER,
+    id_servicio NUMBER, -- Relación con el servicio
+    cantidad NUMBER NOT NULL,
+    precio_unitario NUMBER NOT NULL,
+    CONSTRAINT fk_detalle_servicio_factura FOREIGN KEY (id_factura) REFERENCES factura(id_factura),
+    CONSTRAINT fk_detalle_servicio_servicio FOREIGN KEY (id_servicio) REFERENCES servicio(id_servicio)
 );
 
 -- 13. Creaci�n tabla proveedor: almacena info sobre los proveedores de los productos disponibles para la venta en la veterinaria.
@@ -209,11 +217,13 @@ create table incidente (
     id_incidente number generated as identity primary key,
     id_mascota number null,
     id_empleado number null,
+    id_cliente number null,
     descripcion varchar2(255),
     fecha date,
     estado varchar2(50),
     constraint fk_incidente_mascota foreign key (id_mascota) references mascota(id_mascota),
-    constraint fk_incidente_empleado foreign key (id_empleado) references empleado(id_empleado)
+    constraint fk_incidente_empleado foreign key (id_empleado) references empleado(id_empleado),
+    constraint fk_incidente_cliente foreign key (id_cliente) references cliente(id_cliente)
 );
 
 
