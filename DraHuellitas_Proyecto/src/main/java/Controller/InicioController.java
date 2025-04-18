@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.DAO.ClienteDAO;
+import Model.ClienteDAO;
 import View.AgregarCliente;
 import View.AgregarMascota;
 import View.Inicio;

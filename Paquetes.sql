@@ -275,7 +275,7 @@ CREATE OR REPLACE PACKAGE BODY pkg_factura AS
                              ', ID Cliente: ' || r.id_cliente || 
                              ', Fecha: ' || r.fecha || 
                              ', Total: ' || r.total || 
-                             ', ID Método de Pago: ' || r.id_metodo_pago || 
+                             ', ID Mï¿½todo de Pago: ' || r.id_metodo_pago || 
                              ', Estado de Pago: ' || r.estado_pago);
         END LOOP;
     END obtener_factura;
@@ -358,8 +358,8 @@ CREATE OR REPLACE PACKAGE BODY pkg_historial AS
         FOR r IN c_historial_consultas LOOP
             DBMS_OUTPUT.PUT_LINE('ID Historial: ' || r.id_historial ||
                                  ', Mascota: ' || r.mascota ||
-                                 ', Situación: ' || R.SITUACION ||
-                                 ', Descripción: ' || r.descripcion ||
+                                 ', Situaciï¿½n: ' || R.SITUACION ||
+                                 ', Descripciï¿½n: ' || r.descripcion ||
                                  ', Fecha: ' || TO_CHAR(r.fecha, 'YYYY-MM-DD'));
         END LOOP;
     END obtener_historial_consultas;
@@ -429,4 +429,64 @@ CREATE OR REPLACE PACKAGE BODY pkg_incidentes AS
         );
     END AGREGAR_INCIDENTE;
 END pkg_incidentes;
+
+
+-- 13. Paquete de para mostrar el Cliente y su Mascota
+CREATE OR REPLACE PACKAGE PKG_CLIENTE_MASCOTA AS
+
+    --Obtener datos basicos del cliente y su mascota
+    PROCEDURE OBTENER_CLIENTE_MASCOTA(
+    P_RESULTADO OUT SYS_REFCURSOR);
+    
+    --Obtener datos detallados del cliente y su mascota
+    PROCEDURE OBTENER_DETALLE_EXPEDIENTE(
+        P_ID_CLIENTE IN NUMBER,
+        P_ID_MASCOTA IN NUMBER,
+        P_RESULTADO OUT SYS_REFCURSOR
+    );
+END PKG_CLIENTE_MASCOTA;
+/
+CREATE OR REPLACE PACKAGE BODY PKG_CLIENTE_MASCOTA AS
+
+    --Obtener datos basicos del cliente y su mascota
+    PROCEDURE OBTENER_CLIENTE_MASCOTA(P_RESULTADO OUT SYS_REFCURSOR) IS
+    BEGIN
+        OPEN P_RESULTADO FOR
+            SELECT C.ID_CLIENTE,
+               M.ID_MASCOTA,
+               C.NOMBRE AS NOMBRE_CLIENTE,
+               C.APELLIDO AS APELLIDO_CLIENTE,
+               M.NOMBRE AS NOMBRE_MASCOTA
+            FROM CLIENTE C
+            JOIN MASCOTA M ON C.ID_CLIENTE = M.ID_CLIENTE;
+    END OBTENER_CLIENTE_MASCOTA;
+    
+    
+    --Obtener datos detallados del cliente y su mascota
+    PROCEDURE OBTENER_DETALLE_EXPEDIENTE(
+        P_ID_CLIENTE IN NUMBER,
+        P_ID_MASCOTA IN NUMBER,
+        P_RESULTADO OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN P_RESULTADO FOR
+            SELECT
+                C.ID_CLIENTE,
+                C.NOMBRE AS NOMBRE_CLIENTE,
+                C.APELLIDO,
+                C.TELEFONO,
+                C.EMAIL,
+                C.DIRECCION,
+                M.ID_MASCOTA,
+                M.NOMBRE AS NOMBRE_MASCOTA,
+                M.TIPO,
+                M.RAZA,
+                M.FECHA_NACIMIENTO,
+                M.PESO,
+                M.SEXO
+            FROM CLIENTE C
+            JOIN MASCOTA M ON C.ID_CLIENTE = M.ID_CLIENTE
+            WHERE C.ID_CLIENTE = P_ID_CLIENTE AND M.ID_MASCOTA = P_ID_MASCOTA;
+    END OBTENER_DETALLE_EXPEDIENTE;
+END PKG_CLIENTE_MASCOTA;
 

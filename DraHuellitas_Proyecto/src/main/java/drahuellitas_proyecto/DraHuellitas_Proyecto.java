@@ -24,7 +24,7 @@ public class DraHuellitas_Proyecto {
         java.awt.EventQueue.invokeLater(() -> {
             new Inicio().setVisible(true); // Crear instancia de Inicio y hacerla visible
         });
-*/
+        */
 
         //Se crean las instancias para la vista
         //AgregarCliente vista = new AgregarCliente();

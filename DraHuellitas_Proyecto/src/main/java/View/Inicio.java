@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
@@ -17,6 +19,44 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        
+        
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnExpedientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                    Expedientes expediente = new Expedientes();
+                    expediente.setVisible(true);
+                    setVisible(false);
+                
+            }
+        });
+        
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnFacturar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    
+                    Facturar facturar = new Facturar();
+                    facturar.setVisible(true);
+                    setVisible(false);
+                
+            }
+        });
+        
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnServicios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                    Expedientes expediente = new Expedientes();
+                    expediente.setVisible(true);
+                    setVisible(false);
+                
+            }
+        });
+                
     }
 
     /**
@@ -32,7 +72,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         navBtnInicio = new javax.swing.JButton();
-        navBtnProductos = new javax.swing.JButton();
+        navBtnFacturar = new javax.swing.JButton();
         navBtnExpedientes = new javax.swing.JButton();
         navBtnServicios = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -88,17 +128,17 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        navBtnProductos.setBackground(new java.awt.Color(255, 255, 255));
-        navBtnProductos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        navBtnProductos.setForeground(new java.awt.Color(0, 0, 0));
-        navBtnProductos.setText("Productos");
-        navBtnProductos.setBorder(null);
-        navBtnProductos.setMaximumSize(new java.awt.Dimension(102, 27));
-        navBtnProductos.setMinimumSize(new java.awt.Dimension(102, 27));
-        navBtnProductos.setPreferredSize(new java.awt.Dimension(102, 27));
-        navBtnProductos.addActionListener(new java.awt.event.ActionListener() {
+        navBtnFacturar.setBackground(new java.awt.Color(255, 255, 255));
+        navBtnFacturar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        navBtnFacturar.setForeground(new java.awt.Color(0, 0, 0));
+        navBtnFacturar.setText("Facturar");
+        navBtnFacturar.setBorder(null);
+        navBtnFacturar.setMaximumSize(new java.awt.Dimension(102, 27));
+        navBtnFacturar.setMinimumSize(new java.awt.Dimension(102, 27));
+        navBtnFacturar.setPreferredSize(new java.awt.Dimension(102, 27));
+        navBtnFacturar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                navBtnProductosActionPerformed(evt);
+                navBtnFacturarActionPerformed(evt);
             }
         });
 
@@ -130,7 +170,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(161, 161, 161)
                 .addComponent(navBtnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(81, 81, 81)
-                .addComponent(navBtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(navBtnFacturar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(87, 87, 87)
                 .addComponent(navBtnExpedientes)
                 .addGap(89, 89, 89)
@@ -143,7 +183,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(navBtnInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(navBtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(navBtnFacturar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(navBtnExpedientes)
                     .addComponent(navBtnServicios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -259,9 +299,9 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_navBtnInicioActionPerformed
 
-    private void navBtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navBtnProductosActionPerformed
+    private void navBtnFacturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navBtnFacturarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_navBtnProductosActionPerformed
+    }//GEN-LAST:event_navBtnFacturarActionPerformed
 
     private void navBtnExpedientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navBtnExpedientesActionPerformed
         // TODO add your handling code here:
@@ -292,11 +332,11 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     public JButton getNavBtnProductos() {
-        return navBtnProductos;
+        return navBtnFacturar;
     }
 
     public void setNavBtnProductos(JButton navBtnProductos) {
-        this.navBtnProductos = navBtnProductos;
+        this.navBtnFacturar = navBtnProductos;
     }
 
     public JButton getNavBtnServicios() {
@@ -333,8 +373,8 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JButton navBtnExpedientes;
+    private javax.swing.JButton navBtnFacturar;
     private javax.swing.JButton navBtnInicio;
-    private javax.swing.JButton navBtnProductos;
     private javax.swing.JButton navBtnServicios;
     // End of variables declaration//GEN-END:variables
 }

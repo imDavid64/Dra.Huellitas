@@ -134,7 +134,7 @@
                   <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
                   <Component id="navBtnInicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
-                  <Component id="navBtnProductos" min="-2" max="-2" attributes="0"/>
+                  <Component id="navBtnFacturar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
                   <Component id="navBtnExpedientes" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
@@ -149,7 +149,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="navBtnInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="navBtnProductos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="navBtnFacturar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="navBtnExpedientes" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="navBtnServicios" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -188,7 +188,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="navBtnInicioActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="navBtnProductos">
+        <Component class="javax.swing.JButton" name="navBtnFacturar">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -199,7 +199,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Productos"/>
+            <Property name="text" type="java.lang.String" value="Facturar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="null"/>
             </Property>
@@ -214,7 +214,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="navBtnProductosActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="navBtnFacturarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="navBtnExpedientes">

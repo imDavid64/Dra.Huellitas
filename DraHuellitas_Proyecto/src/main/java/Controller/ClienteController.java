@@ -1,19 +1,12 @@
 package Controller;
 
 import Model.Cliente;
-import Model.DAO.ClienteDAO;
-import Model.DAO.ConexionOracle;
-import View.AgregarCliente;
-import View.AgregarMascota;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import Util.ConexionOracle;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClienteController {
 
@@ -44,7 +37,8 @@ public class ClienteController {
             String email, String direccion) {
         String sql = "{call AGREGAR_CLIENTE(?, ?, ?, ?, ?)}"; // Nombre del procedimiento almacenado
 
-        try (Connection conn = ConexionOracle.getConexion(); CallableStatement stmt = conn.prepareCall(sql)) {
+        try (Connection conn = ConexionOracle.getConexion(); 
+                CallableStatement stmt = conn.prepareCall(sql)) {
 
             // Configura los parámetros de entrada
             stmt.setString(1, nombre);

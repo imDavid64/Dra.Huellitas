@@ -4,62 +4,17 @@
  */
 package View;
 
-import Model.ClienteMascota;
-import Model.ClienteMascotaDAO;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author XPC
  */
-public class Expedientes extends javax.swing.JFrame {
+public class Facturar extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
-    private List<ClienteMascota> lista;
-
-    private void cargarDatos() {
-        DefaultTableModel modelo = new DefaultTableModel(
-                new String[]{"Cliente", "Apellido", "Mascota"}, 0
-        );
-
-        ClienteMascotaDAO dao = new ClienteMascotaDAO();
-        lista = dao.obtenerClienteMascota(); // ya no es una variable local, es la global
-
-        for (ClienteMascota cm : lista) {
-            modelo.addRow(new Object[]{
-                cm.getNombreCliente(),
-                cm.getApellidoCliente(),
-                cm.getNombreMascota()
-            });
-        }
-
-        tablaExpedientes.setModel(modelo);
-    }
-
-    public Expedientes() {
+    public Facturar() {
         initComponents();
-
-        cargarDatos();
-
-        //Abrir la ventana del cliente cuando se detecte un click en la fila de la tabla
-        tablaExpedientes.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                int fila = tablaExpedientes.getSelectedRow();
-                if (fila >= 0) {
-                    int idCliente = lista.get(fila).getIdCliente();
-                    int idMascota = lista.get(fila).getIdMascota();
-
-                    DetalleExpediente detalle = new DetalleExpediente(idCliente, idMascota);
-                    detalle.setVisible(true);
-                    setVisible(false);
-                }
-            }
-        });
-
     }
 
     /**
@@ -78,8 +33,6 @@ public class Expedientes extends javax.swing.JFrame {
         navBtnFacturar = new javax.swing.JButton();
         navBtnExpedientes = new javax.swing.JButton();
         navBtnServicios = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaExpedientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dra.Huellitas");
@@ -187,30 +140,12 @@ public class Expedientes extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tablaExpedientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Nombre", "Apellido", "Mascota"
-            }
-        ));
-        tablaExpedientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(tablaExpedientes);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 969, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 838, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,9 +153,7 @@ public class Expedientes extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addContainerGap(441, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,11 +176,9 @@ public class Expedientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton navBtnExpedientes;
     private javax.swing.JButton navBtnFacturar;
     private javax.swing.JButton navBtnInicio;
     private javax.swing.JButton navBtnServicios;
-    private javax.swing.JTable tablaExpedientes;
     // End of variables declaration//GEN-END:variables
 }
