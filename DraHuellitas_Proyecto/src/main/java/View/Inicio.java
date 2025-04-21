@@ -56,6 +56,15 @@ public class Inicio extends javax.swing.JFrame {
                 
             }
         });
+        
+        btnAgregarProducto.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AgregarProducto producto = new AgregarProducto();
+                producto.setVisible(true);
+                dispose();
+            }
+        });
                 
     }
 
@@ -82,6 +91,7 @@ public class Inicio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btmAgregaCliente = new javax.swing.JButton();
+        btnAgregarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dra.Huellitas");
@@ -114,9 +124,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        navBtnInicio.setBackground(new java.awt.Color(255, 255, 255));
         navBtnInicio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        navBtnInicio.setForeground(new java.awt.Color(0, 0, 0));
         navBtnInicio.setText("Inicio");
         navBtnInicio.setBorder(null);
         navBtnInicio.setMaximumSize(new java.awt.Dimension(102, 27));
@@ -128,9 +136,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        navBtnFacturar.setBackground(new java.awt.Color(255, 255, 255));
         navBtnFacturar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        navBtnFacturar.setForeground(new java.awt.Color(0, 0, 0));
         navBtnFacturar.setText("Facturar");
         navBtnFacturar.setBorder(null);
         navBtnFacturar.setMaximumSize(new java.awt.Dimension(102, 27));
@@ -142,9 +148,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        navBtnExpedientes.setBackground(new java.awt.Color(255, 255, 255));
         navBtnExpedientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        navBtnExpedientes.setForeground(new java.awt.Color(0, 0, 0));
         navBtnExpedientes.setText("Expedientes");
         navBtnExpedientes.setBorder(null);
         navBtnExpedientes.addActionListener(new java.awt.event.ActionListener() {
@@ -153,9 +157,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        navBtnServicios.setBackground(new java.awt.Color(255, 255, 255));
         navBtnServicios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        navBtnServicios.setForeground(new java.awt.Color(0, 0, 0));
         navBtnServicios.setText("Servicios");
         navBtnServicios.setBorder(null);
         navBtnServicios.setMaximumSize(new java.awt.Dimension(102, 27));
@@ -255,6 +257,8 @@ public class Inicio extends javax.swing.JFrame {
 
         btmAgregaCliente.setText("Agregar Cliente");
 
+        btnAgregarProducto.setText("Agregar Producto");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -271,7 +275,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(98, 98, 98))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btmAgregaCliente)
-                        .addGap(374, 374, 374))))
+                        .addGap(81, 81, 81)
+                        .addComponent(btnAgregarProducto)
+                        .addGap(169, 169, 169))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,7 +290,9 @@ public class Inicio extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(btmAgregaCliente)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btmAgregaCliente)
+                            .addComponent(btnAgregarProducto))
                         .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
@@ -363,6 +371,7 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btmAgregaCliente;
+    private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

@@ -6,9 +6,15 @@ import java.sql.SQLException;
 
 public class ConexionOracle {
 
+    //conexión David
+    //private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    //private static final String USERNAME = "DraHuellitas";
+    //private static final String PASSWORD = "1234";
+    
+    //conexión Daniela
     private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-    private static final String USERNAME = "DraHuellitas";
-    private static final String PASSWORD = "1234";
+    private static final String USERNAME = "veterinaria";
+    private static final String PASSWORD = "admin";
 
     public static Connection getConexion() throws SQLException {
         try {
