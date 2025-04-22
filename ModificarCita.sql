@@ -1,30 +1,91 @@
---Modificar cita
 
-CREATE OR REPLACE PROCEDURE modificar_cita(
-    p_id_cita IN cita.id_cita%TYPE,
-    p_fecha IN cita.fecha%TYPE,
-    p_hora IN cita.hora%TYPE,
-    p_estado IN cita.estado%TYPE
-) IS
-BEGIN
-    UPDATE cita
-    SET fecha = p_fecha,
-        hora = p_hora,
-        estado = p_estado
-    WHERE id_cita = p_id_cita;
+// ModificarCita.java
 
-    IF SQL%ROWCOUNT = 0 THEN
-        dbms_output.put_line('No se encontró la cita para modificar.');
-    ELSE
-        dbms_output.put_line('Cita modificada correctamente.');
-    END IF;
-EXCEPTION
-    WHEN OTHERS THEN
-        dbms_output.put_line('Error al modificar cita: ' || SQLERRM);
-END;
-/
+import javax.swing.*;
+import java.awt.event.*;
+import java.sql.*;
 
---Para probar(suponiendo que hay cita con ID 1
+public class ModificarCita extends JFrame {
 
-EXECUTE modificar_cita(1, TO_DATE('2025-04-23', 'YYYY-MM-DD'), '10:30', 'Confirmada');
+    private JTextField idCitaField, fechaField, horaField, estadoField;
 
+    public ModificarCita() {
+        setTitle("Modificar Cita");
+        setSize(350, 300);
+        setLayout(null);
+
+        JLabel idCitaLabel = new JLabel("ID Cita:");
+        idCitaLabel.setBounds(30, 30, 100, 25);
+        add(idCitaLabel);
+
+        idCitaField = new JTextField();
+        idCitaField.setBounds(140, 30, 160, 25);
+        add(idCitaField);
+
+        JLabel fechaLabel = new JLabel("Fecha (YYYY-MM-DD):");
+        fechaLabel.setBounds(30, 70, 150, 25);
+        add(fechaLabel);
+
+        fechaField = new JTextField();
+        fechaField.setBounds(180, 70, 120, 25);
+        add(fechaField);
+
+        JLabel horaLabel = new JLabel("Hora (HH:MM):");
+        horaLabel.setBounds(30, 110, 150, 25);
+        add(horaLabel);
+
+        horaField = new JTextField();
+        horaField.setBounds(180, 110, 120, 25);
+        add(horaField);
+
+        JLabel estadoLabel = new JLabel("Estado:");
+        estadoLabel.setBounds(30, 150, 150, 25);
+        add(estadoLabel);
+
+        estadoField = new JTextField();
+        estadoField.setBounds(180, 150, 120, 25);
+        add(estadoField);
+
+        JButton modificarButton = new JButton("Modificar");
+        modificarButton.setBounds(120, 200, 100, 30);
+        add(modificarButton);
+
+        modificarButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                modificarCita();
+            }
+        });
+    }
+
+    private void modificarCita() {
+        int idCita;
+        String fecha = fechaField.getText();
+        String hora = horaField.getText();
+        String estado = estadoField.getText();
+
+        try {
+            idCita = Integer.parseInt(idCitaField.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "ID Cita inválido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+    //conexión David
+    //private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    //private static final String USERNAME = "DraHuellitas";
+    //private static final String PASSWORD = "1234";
+
+        try (Connection conn = DriverManager.getConnection(url, user, pass)) {
+            CallableStatement stmt = conn.prepareCall("{call modificar_cita(?, ?, ?, ?)}");
+            stmt.setInt(1, idCita);
+            stmt.setDate(2, java.sql.Date.valueOf(fecha));
+            stmt.setString(3, hora);
+            stmt.setString(4, estado);
+            stmt.execute();
+
+            JOptionPane.showMessageDialog(this, "Cita modificada correctamente.");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al modificar cita: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+}
