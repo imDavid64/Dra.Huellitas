@@ -55,8 +55,8 @@ public class AgregarMascota extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Facturar facturar = new Facturar();
-                facturar.setVisible(true);
+                //Facturar facturar = new Facturar();
+                //facturar.setVisible(true);
                 setVisible(false);
 
             }

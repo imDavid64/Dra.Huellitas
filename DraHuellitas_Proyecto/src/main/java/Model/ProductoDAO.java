@@ -9,9 +9,11 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 import oracle.jdbc.OracleTypes;
+
 
 /**
  *
@@ -71,5 +73,43 @@ public class ProductoDAO {
 
         return productos;
     }
+     
+    public int crearFactura(int idCliente, double total, int idMetodoPago, String estadoPago) throws SQLException {
+    String sql = "{ call CREAR_FACTURA(?, ?, ?, ?, ?) }";
+    try (Connection conn = ConexionOracle.getConexion();
+         CallableStatement stmt = conn.prepareCall(sql)) {
+
+        stmt.setInt(1, idCliente);
+        stmt.setDouble(2, total);
+        stmt.setInt(3, idMetodoPago);
+        stmt.setString(4, estadoPago);
+        stmt.registerOutParameter(5, Types.INTEGER);
+
+        stmt.execute();
+        return stmt.getInt(5);
+    }
 }
 
+    public void agregarDetalleProducto(int idFactura, int idProducto, int cantidad, double precioUnitario) throws SQLException {
+    String sql = "{ call AGREGAR_DETALLE_PRODUCTO(?, ?, ?, ?) }";
+    try (Connection conn = ConexionOracle.getConexion();
+         CallableStatement stmt = conn.prepareCall(sql)) {
+
+        stmt.setInt(1, idFactura);
+        stmt.setInt(2, idProducto);
+        stmt.setInt(3, cantidad);
+        stmt.setDouble(4, precioUnitario);
+        stmt.execute();
+        }
+    }
+    public void actualizarStock(int idProducto, int cantidad) throws SQLException {
+    String sql = "{ call ACTUALIZAR_STOCK_PRODUCTO(?, ?) }";
+    try (Connection conn = ConexionOracle.getConexion();
+         CallableStatement stmt = conn.prepareCall(sql)) {
+
+        stmt.setInt(1, idProducto);
+        stmt.setInt(2, cantidad);
+        stmt.execute();
+        }
+    }
+}

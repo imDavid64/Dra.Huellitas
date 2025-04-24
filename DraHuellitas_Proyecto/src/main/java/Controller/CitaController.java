@@ -27,11 +27,11 @@ public class CitaController {
         }
     }
     
-    public void modificarCita(int idCita, java.util.Date fecha, String hora, String estado) {
+    public void modificarCita(int idCita, Date fecha, String hora, String estado) {
     try (Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
         CallableStatement stmt = conn.prepareCall("{call modificar_cita(?, ?, ?, ?)}");
         stmt.setInt(1, idCita);
-        stmt.setDate(2, (Date) fecha);
+        stmt.setDate(2, fecha);
         stmt.setString(3, hora);
         stmt.setString(4, estado);
         stmt.execute();

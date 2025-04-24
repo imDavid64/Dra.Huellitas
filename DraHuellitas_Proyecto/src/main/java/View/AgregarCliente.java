@@ -50,9 +50,9 @@ public class AgregarCliente extends javax.swing.JFrame {
         navBtnFacturar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                Facturar facturar = new Facturar();
-                facturar.setVisible(true);
+                
+                //Facturar facturar = new Facturar();
+                //facturar.setVisible(true);
                 setVisible(false);
 
             }
@@ -102,6 +102,10 @@ public class AgregarCliente extends javax.swing.JFrame {
                 }
             }
         });
+        
+        
+        
+
     }
 
     /**

@@ -47,8 +47,8 @@ public class Inicio extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Facturar facturar = new Facturar();
-                facturar.setVisible(true);
+                //Facturar facturar = new Facturar();
+                //facturar.setVisible(true);
                 setVisible(false);
 
             }
@@ -59,6 +59,9 @@ public class Inicio extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                Servicios servicio = new Servicios();
+                servicio.setVisible(true);
+                setVisible(false);
 
 
             }
@@ -311,7 +314,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                        .addGap(18, 132, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

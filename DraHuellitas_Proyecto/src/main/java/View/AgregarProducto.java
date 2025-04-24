@@ -23,6 +23,7 @@ public class AgregarProducto extends javax.swing.JFrame {
         btnGuardar.addActionListener(evt -> guardarProducto());
         btnSalir.addActionListener(evt -> salirAlInicio());
         btnBuscarProducto.addActionListener(evt -> irBuscarProducto());
+        
     }
     
     private void guardarProducto() {
@@ -31,7 +32,7 @@ public class AgregarProducto extends javax.swing.JFrame {
             String descripcion = ValueDescripcion.getText();
             String tipo = ValueTipo.getText();
         
-            // Validación de los campos obligatorios
+            // Validación de campos obligatorios
             if (nombre.isEmpty() || ValuePrecio.getText().trim().isEmpty() || ValueStock.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Por favor, complete los campos obligatorios: Nombre, Precio y Stock.");
                 return;
@@ -267,7 +268,6 @@ public class AgregarProducto extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AgregarProducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

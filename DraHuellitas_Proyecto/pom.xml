@@ -23,8 +23,8 @@
             <version>1.4</version>
         </dependency>
     </dependencies>
-    
-     <build>
+
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
