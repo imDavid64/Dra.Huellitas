@@ -42,17 +42,18 @@ create table empleado (
     salario number -- deber�a usar money? 
 );
 
--- 5. Creaci�n tabla consulta: almacena info sobre las consultas al veterinario de cada mascota.
-create table consulta (
-    id_consulta number generated as identity primary key,
-    id_mascota number,
-    id_empleado number,
-    fecha date,
-    motivo varchar2(255),
-    diagnostico varchar2(255),
-    tratamiento varchar2(255),
-    constraint fk_consulta_mascota foreign key (id_mascota) references mascota(id_mascota),
-    constraint fk_consulta_empleado foreign key (id_empleado) references empleado(id_empleado)
+-- 5. Creación tabla CONSULTA: almacena info sobre las consultas al veterinario de cada mascota.
+CREATE TABLE consulta (
+    id_consulta NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    id_mascota NUMBER,
+    id_empleado NUMBER,
+    fecha DATE,
+    motivo VARCHAR2(255),
+    diagnostico VARCHAR2(255),
+    tratamiento VARCHAR2(255),
+    estado VARCHAR2(20) DEFAULT 'ACTIVO', --Nuevo atributo
+    CONSTRAINT fk_consulta_mascota FOREIGN KEY (id_mascota) REFERENCES mascota(id_mascota),
+    CONSTRAINT fk_consulta_empleado FOREIGN KEY (id_empleado) REFERENCES empleado(id_empleado)
 );
 
 /* 6. Creaci�n tabla tratamiento: en caso de que alguna mascota deba seguir alg�n tratamiento, 

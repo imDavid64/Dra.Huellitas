@@ -27,6 +27,50 @@ public class AgregarMascota extends javax.swing.JFrame {
      */
     public AgregarMascota() {
         initComponents();
+        ///////////////////////NAVBAR///////////////////////
+        //Accion del Boton de Ir a pantalla de Inicio
+        navBtnInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio inicio = new Inicio();
+                inicio.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnExpedientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Expedientes expediente = new Expedientes();
+                expediente.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnFacturar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Facturar facturar = new Facturar();
+                facturar.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnServicios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+        ///////////////////////NAVBAR///////////////////////
 
         ClienteController clienteController = new ClienteController();
 
@@ -42,11 +86,11 @@ public class AgregarMascota extends javax.swing.JFrame {
                         inTxtApellidoPropietario.getText()
                 );
 
-                if (!inTxtNombrePropietario.getText().equals("") &&
-                        !inTxtApellidoPropietario.getText().equals("")) {
-                    
+                if (!inTxtNombrePropietario.getText().equals("")
+                        && !inTxtApellidoPropietario.getText().equals("")) {
+
                     inTxtIdCliente.setText(String.valueOf(cliente.getIdCliente()));
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró ningún cliente.",
                             "Resultado", JOptionPane.WARNING_MESSAGE);

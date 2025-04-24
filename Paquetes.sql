@@ -490,3 +490,113 @@ CREATE OR REPLACE PACKAGE BODY PKG_CLIENTE_MASCOTA AS
     END OBTENER_DETALLE_EXPEDIENTE;
 END PKG_CLIENTE_MASCOTA;
 
+-- 14. Paquete de para la tabla consulta
+create or replace PACKAGE pkg_consulta AS
+    PROCEDURE AGREGAR_CONSULTA (
+        p_id_mascota IN NUMBER,
+        p_id_empleado IN NUMBER,
+        p_fecha IN DATE,
+        p_motivo IN VARCHAR2,
+        p_diagnostico IN VARCHAR2,
+        p_tratamiento IN VARCHAR2
+    );
+    
+    PROCEDURE OBTENER_CONSULTAS_POR_MASCOTA(
+        P_ID_MASCOTA IN NUMBER,
+        P_RESULTADO OUT SYS_REFCURSOR
+    );
+    
+    PROCEDURE OBTENER_DETALLE_CONSULTA(
+        p_id_consulta IN CONSULTA.ID_CONSULTA%TYPE,
+        p_cursor OUT SYS_REFCURSOR
+    );
+    
+    PROCEDURE ACTUALIZAR_CONSULTA (
+        p_idConsulta IN CONSULTA.ID_CONSULTA%TYPE,
+        p_fecha IN CONSULTA.FECHA%TYPE,
+        p_motivo IN CONSULTA.MOTIVO%TYPE,
+        p_diagnostico IN CONSULTA.DIAGNOSTICO%TYPE,
+        p_tratamiento IN CONSULTA.TRATAMIENTO%TYPE
+    );
+    
+    PROCEDURE ELIMINAR_CONSULTA (
+        p_idConsulta IN CONSULTA.ID_CONSULTA%TYPE
+    );
+END pkg_consulta;
+/
+create or replace PACKAGE BODY pkg_consulta AS
+    PROCEDURE AGREGAR_CONSULTA (
+        p_id_mascota IN NUMBER,
+        p_id_empleado IN NUMBER,
+        p_fecha IN DATE,
+        p_motivo IN VARCHAR2,
+        p_diagnostico IN VARCHAR2,
+        p_tratamiento IN VARCHAR2
+    ) AS
+    BEGIN
+        INSERT INTO consulta (id_mascota, id_empleado, fecha, motivo, diagnostico, tratamiento)
+        VALUES (p_id_mascota, p_id_empleado, p_fecha, p_motivo, p_diagnostico, p_tratamiento);
+    END AGREGAR_CONSULTA;
+    
+    PROCEDURE OBTENER_CONSULTAS_POR_MASCOTA(
+        P_ID_MASCOTA IN NUMBER,
+        P_RESULTADO OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN P_RESULTADO FOR
+            SELECT c.id_consulta,
+                   c.fecha,
+                   c.motivo,
+                   c.diagnostico,
+                   c.tratamiento,
+                   e.nombre || ' ' || e.apellido AS nombre_doctor
+            FROM consulta c
+            JOIN empleado e ON c.id_empleado = e.id_empleado
+            WHERE c.id_mascota = P_ID_MASCOTA AND c.estado = 'ACTIVO';
+    END OBTENER_CONSULTAS_POR_MASCOTA;
+    
+    PROCEDURE OBTENER_DETALLE_CONSULTA(
+        p_id_consulta IN CONSULTA.ID_CONSULTA%TYPE,
+        p_cursor OUT SYS_REFCURSOR
+    ) AS
+    BEGIN
+        OPEN p_cursor FOR
+            SELECT c.id_consulta,
+                   c.fecha,
+                   c.motivo,
+                   c.diagnostico,
+                   c.tratamiento,
+                   e.nombre || ' ' || e.apellido AS nombre_doctor
+            FROM consulta c
+            JOIN empleado e ON c.id_empleado = e.id_empleado
+            WHERE c.id_consulta = p_id_consulta AND c.estado = 'ACTIVO';
+    END OBTENER_DETALLE_CONSULTA;
+    
+    PROCEDURE ACTUALIZAR_CONSULTA (
+        p_idConsulta IN CONSULTA.ID_CONSULTA%TYPE,
+        p_fecha IN CONSULTA.FECHA%TYPE,
+        p_motivo IN CONSULTA.MOTIVO%TYPE,
+        p_diagnostico IN CONSULTA.DIAGNOSTICO%TYPE,
+        p_tratamiento IN CONSULTA.TRATAMIENTO%TYPE
+    ) AS
+    BEGIN
+        UPDATE CONSULTA
+        SET
+            FECHA = p_fecha,
+            MOTIVO = p_motivo,
+            DIAGNOSTICO = p_diagnostico,
+            TRATAMIENTO = p_tratamiento
+        WHERE ID_CONSULTA = p_idConsulta;
+    END ACTUALIZAR_CONSULTA;
+    
+    --Eliminar consulta de manera logica
+    PROCEDURE ELIMINAR_CONSULTA (
+        p_idConsulta IN CONSULTA.ID_CONSULTA%TYPE
+    ) AS
+    BEGIN
+        UPDATE CONSULTA
+        SET ESTADO = 'INACTIVO'
+        WHERE ID_CONSULTA = p_idConsulta;
+    END ELIMINAR_CONSULTA;
+END pkg_consulta;
+

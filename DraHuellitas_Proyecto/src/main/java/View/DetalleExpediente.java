@@ -6,6 +6,7 @@ package View;
 
 import Model.ClienteMascota;
 import Model.ClienteMascotaDAO;
+import View.HistorialMedico;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,6 +19,10 @@ public class DetalleExpediente extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    private int idCliente;
+    private int idMascota;
+    private String nombreMascota; // <-- nuevo
+
     private void mostrarDetalle(int idCliente, int idMascota) {
         ClienteMascotaDAO dao = new ClienteMascotaDAO();
         ClienteMascota cm = dao.obtenerDetalleExpediente(idCliente, idMascota);
@@ -38,11 +43,72 @@ public class DetalleExpediente extends javax.swing.JFrame {
 
     public DetalleExpediente(int idCliente, int idMascota) {
         initComponents();
+                ///////////////////////NAVBAR///////////////////////
+        //Accion del Boton de Ir a pantalla de Inicio
+        navBtnInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio inicio = new Inicio();
+                inicio.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnExpedientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Expedientes expediente = new Expedientes();
+                expediente.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnFacturar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Facturar facturar = new Facturar();
+                facturar.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Servicio
+        navBtnServicios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        ///////////////////////NAVBAR///////////////////////
+        
+        
+        
+        this.idCliente = idCliente;
+        this.idMascota = idMascota;
+
+        ClienteMascotaDAO dao = new ClienteMascotaDAO();
+        ClienteMascota cm = dao.obtenerDetalleExpediente(idCliente, idMascota);
+
+        nombreMascota = cm.getNombreMascota();
+        txtOutNombreMascota.setText(nombreMascota);
 
         mostrarDetalle(idCliente, idMascota);
 
-        
-        
+        btnHistorialMedico.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HistorialMedico historial = new HistorialMedico(idMascota, nombreMascota);
+                historial.setVisible(true);
+                setVisible(false);
+            }
+        });
+
         //Regresar a ver todos los expedientes
         btnRegresarExpedientes.addActionListener(new ActionListener() {
             @Override
@@ -96,7 +162,7 @@ public class DetalleExpediente extends javax.swing.JFrame {
         txtOutFechaNacimientoMascota = new javax.swing.JLabel();
         txtOutPesoMascota = new javax.swing.JLabel();
         txtOutSexoMascota = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnHistorialMedico = new javax.swing.JButton();
         btnRegresarExpedientes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -316,10 +382,10 @@ public class DetalleExpediente extends javax.swing.JFrame {
 
         txtOutSexoMascota.setText("...");
 
-        jButton1.setText("Historial Medico");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnHistorialMedico.setText("Historial Medico");
+        btnHistorialMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnHistorialMedicoActionPerformed(evt);
             }
         });
 
@@ -354,7 +420,7 @@ public class DetalleExpediente extends javax.swing.JFrame {
                                     .addGap(143, 143, 143))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                     .addGap(43, 43, 43)
-                                    .addComponent(jButton1)
+                                    .addComponent(btnHistorialMedico)
                                     .addGap(18, 18, 18)))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -397,11 +463,16 @@ public class DetalleExpediente extends javax.swing.JFrame {
                     .addComponent(jLabel13)
                     .addComponent(txtOutSexoMascota))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(btnHistorialMedico)
                 .addGap(20, 20, 20))
         );
 
         btnRegresarExpedientes.setText("<- Regresar");
+        btnRegresarExpedientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarExpedientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -448,14 +519,18 @@ public class DetalleExpediente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_navBtnExpedientesActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnHistorialMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialMedicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnHistorialMedicoActionPerformed
+
+    private void btnRegresarExpedientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarExpedientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegresarExpedientesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnHistorialMedico;
     private javax.swing.JButton btnRegresarExpedientes;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

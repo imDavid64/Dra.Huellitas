@@ -4,6 +4,9 @@
  */
 package View;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author XPC
@@ -15,6 +18,50 @@ public class Facturar extends javax.swing.JFrame {
      */
     public Facturar() {
         initComponents();
+                ///////////////////////NAVBAR///////////////////////
+        //Accion del Boton de Ir a pantalla de Inicio
+        navBtnInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio inicio = new Inicio();
+                inicio.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnExpedientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Expedientes expediente = new Expedientes();
+                expediente.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnFacturar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Facturar facturar = new Facturar();
+                facturar.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Servicio
+        navBtnServicios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+        ///////////////////////NAVBAR///////////////////////
     }
 
     /**

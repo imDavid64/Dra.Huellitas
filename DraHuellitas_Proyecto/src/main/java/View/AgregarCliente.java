@@ -8,6 +8,7 @@ import Controller.ClienteController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -22,6 +23,52 @@ public class AgregarCliente extends javax.swing.JFrame {
     public AgregarCliente() {
 
         initComponents();
+                ///////////////////////NAVBAR///////////////////////
+        //Accion del Boton de Ir a pantalla de Inicio
+        navBtnInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio inicio = new Inicio();
+                inicio.setVisible(true);
+                setVisible(false);
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnExpedientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Expedientes expediente = new Expedientes();
+                expediente.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnFacturar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                Facturar facturar = new Facturar();
+                facturar.setVisible(true);
+                setVisible(false);
+
+            }
+        });
+
+        //Accion del Boton de Ir a pantalla de Expedientes
+        navBtnServicios.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+
+            }
+        });
+        ///////////////////////NAVBAR///////////////////////
+        
+        
 
         ClienteController clienteController = new ClienteController();
 
@@ -44,8 +91,14 @@ public class AgregarCliente extends javax.swing.JFrame {
                     // Llama al método para agregar al cliente
                     clienteController.agregarCliente(nombre, apellido, telefono, email, direccion);
 
+                    JOptionPane.showMessageDialog(null, "Se agregó el cliente correctamente :)", "Registro exitoso", JOptionPane.INFORMATION_MESSAGE);
+
+                    AgregarMascota mascota = new AgregarMascota();
+                    mascota.setVisible(true);
+                    setVisible(false);
+
                 } else {
-                    
+
                 }
             }
         });

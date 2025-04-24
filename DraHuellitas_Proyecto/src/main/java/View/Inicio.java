@@ -19,45 +19,53 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
-        
-        
+        ///////////////////////NAVBAR///////////////////////
+        //Accion del Boton de Ir a pantalla de Inicio
+        navBtnInicio.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Inicio inicio = new Inicio();
+                inicio.setVisible(true);
+                setVisible(false);
+            }
+        });
+
         //Accion del Boton de Ir a pantalla de Expedientes
         navBtnExpedientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                    Expedientes expediente = new Expedientes();
-                    expediente.setVisible(true);
-                    setVisible(false);
-                
+
+                Expedientes expediente = new Expedientes();
+                expediente.setVisible(true);
+                setVisible(false);
+
             }
         });
-        
-        //Accion del Boton de Ir a pantalla de Expedientes
+
+        //Accion del Boton de Ir a pantalla de Facturar
         navBtnFacturar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    
-                    Facturar facturar = new Facturar();
-                    facturar.setVisible(true);
-                    setVisible(false);
-                
+
+                Facturar facturar = new Facturar();
+                facturar.setVisible(true);
+                setVisible(false);
+
             }
         });
-        
-        //Accion del Boton de Ir a pantalla de Expedientes
+
+        //Accion del Boton de Ir a pantalla de Servicio
         navBtnServicios.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                    Expedientes expediente = new Expedientes();
-                    expediente.setVisible(true);
-                    setVisible(false);
-                
+
+
+
             }
         });
-        
-        btnAgregarProducto.addActionListener(new ActionListener(){
+        ///////////////////////NAVBAR///////////////////////
+
+        btnAgregarProducto.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AgregarProducto producto = new AgregarProducto();
@@ -65,7 +73,15 @@ public class Inicio extends javax.swing.JFrame {
                 dispose();
             }
         });
-                
+
+        btnAgregaCliente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AgregarCliente cliente = new AgregarCliente();
+                cliente.setVisible(true);
+                setVisible(false);
+            }
+        });
     }
 
     /**
@@ -90,7 +106,7 @@ public class Inicio extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btmAgregaCliente = new javax.swing.JButton();
+        btnAgregaCliente = new javax.swing.JButton();
         btnAgregarProducto = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -124,7 +140,9 @@ public class Inicio extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        navBtnInicio.setBackground(new java.awt.Color(255, 255, 255));
         navBtnInicio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        navBtnInicio.setForeground(new java.awt.Color(0, 0, 0));
         navBtnInicio.setText("Inicio");
         navBtnInicio.setBorder(null);
         navBtnInicio.setMaximumSize(new java.awt.Dimension(102, 27));
@@ -136,7 +154,9 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        navBtnFacturar.setBackground(new java.awt.Color(255, 255, 255));
         navBtnFacturar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        navBtnFacturar.setForeground(new java.awt.Color(0, 0, 0));
         navBtnFacturar.setText("Facturar");
         navBtnFacturar.setBorder(null);
         navBtnFacturar.setMaximumSize(new java.awt.Dimension(102, 27));
@@ -148,7 +168,9 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        navBtnExpedientes.setBackground(new java.awt.Color(255, 255, 255));
         navBtnExpedientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        navBtnExpedientes.setForeground(new java.awt.Color(0, 0, 0));
         navBtnExpedientes.setText("Expedientes");
         navBtnExpedientes.setBorder(null);
         navBtnExpedientes.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +179,9 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        navBtnServicios.setBackground(new java.awt.Color(255, 255, 255));
         navBtnServicios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        navBtnServicios.setForeground(new java.awt.Color(0, 0, 0));
         navBtnServicios.setText("Servicios");
         navBtnServicios.setBorder(null);
         navBtnServicios.setMaximumSize(new java.awt.Dimension(102, 27));
@@ -255,7 +279,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        btmAgregaCliente.setText("Agregar Cliente");
+        btnAgregaCliente.setText("Agregar Cliente");
 
         btnAgregarProducto.setText("Agregar Producto");
 
@@ -274,7 +298,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(98, 98, 98))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btmAgregaCliente)
+                        .addComponent(btnAgregaCliente)
                         .addGap(81, 81, 81)
                         .addComponent(btnAgregarProducto)
                         .addGap(169, 169, 169))))
@@ -291,7 +315,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btmAgregaCliente)
+                            .addComponent(btnAgregaCliente)
                             .addComponent(btnAgregarProducto))
                         .addGap(15, 15, 15))
                     .addGroup(layout.createSequentialGroup()
@@ -316,11 +340,11 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_navBtnExpedientesActionPerformed
 
     public JButton getBtmAgregaCliente() {
-        return btmAgregaCliente;
+        return btnAgregaCliente;
     }
 
     public void setBtmAgregaCliente(JButton btmAgregaCliente) {
-        this.btmAgregaCliente = btmAgregaCliente;
+        this.btnAgregaCliente = btmAgregaCliente;
     }
 
     public JButton getNavBtnExpedientes() {
@@ -355,11 +379,6 @@ public class Inicio extends javax.swing.JFrame {
         this.navBtnServicios = navBtnServicios;
     }
 
-    
-    
-    
-    
-    
     public static void main(String[] args) {
         // Asegurar que la GUI se ejecute en el hilo de despacho de eventos de Swing
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -370,7 +389,7 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btmAgregaCliente;
+    private javax.swing.JButton btnAgregaCliente;
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
